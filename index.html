@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="Es">
+<head>
+	<meta charset="UTF-8">
+	<title>Formulario de Contacto con AJAX y PHP</title>
+	<link rel="stylesheet" href="estilos.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+	<script>
+			$(document).ready(function() {
+			  
+			    $(document).ajaxStart(function() {
+			        $('.cargando').show();
+			        $('.resultado').hide();
+			    }).ajaxStop(function() {
+			        $('.cargando').hide();
+			        $('.resultado').fadeIn('slow');
+			    });
+			  
+			    $('.form-contacto').submit(function() {
+			
+			        $.ajax({
+			            type: 'POST',
+			            url: $(this).attr('action'),
+			            data: $(this).serialize(),
+			           
+			            success: function(data) {
+			                $('.resultado').html(data);
+			            }
+			        })        
+			        return false;
+			    }); 
+			})  
+		</script>
+
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		< ![endif]-->
+  
+</head>
+<body>
+
+<h1>Formulario de Contacto</h1>
+
+<section class="FormContact">
+
+<p>Para mayor información sobre nuestros servicios,  escribanos por medio del formulario y nos pondremos en contacto con usted lo más pronto posible. Gracias !</p>
+
+				<form action="email.php" method="POST" class="form-contacto" name="form-contacto">
+
+			     		<input type="text" name="nombre" id="nombre" placeholder="Nombre Completo [Requerido]"> <br>
+			     		<input type="text" name="empresa" id="empresa" placeholder="Su Empresa"><br>
+			     		<input type="text" name="pais" id="pais" placeholder="País"><br>
+			     		<input type="email" name="email" id="email" placeholder="Correo Electrónico [Requerido]"> <br>
+			     		<input type="tel" name="telefono" id="tel" placeholder="Teléfono [Requerido]"><br>
+			     	    <select  name="motivo" id="motivo">
+	   						    <option value="Soporte Tecnico">Soporte Técnico</option>
+			                    <option value="Consultas">Consultas</option>
+			                    <option value="Sugerencias">Sugerencias</option>
+			                    <option value="Comentarios">Comentarios</option>
+			                   </select>
+
+			       		<textarea rows="10" cols="41" maxlength="500"  name="mensaje" id="mensaje" placeholder="Este campo esta limitado a 500 caracteres" name="mensaje" id="mensaje"></textarea>
+
+			                         	
+			             <input type="submit" name="enviar" required id="enviar" value="ENVIAR" class="enviar">	  
+			             <input type="reset" value="LIMPIAR" class="limpiar">	
+
+			             <div class="cargando"><img src="cargando.gif"></div>
+						 <div class="resultado"></div>	
+			            			             	              
+			   					   
+				</form>
+
+
+
+</section>
+	
+</body>
+</html>

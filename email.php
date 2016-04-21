@@ -32,7 +32,7 @@ $mensaje = $_POST['mensaje'];
         $info .= "Mensaje: " . $mensaje . " \r\n";
         $info .= "Enviado: " . date('d/m/Y', time());
 
-        $para = 'info@soltecpro.net';
+        $para = 'edylasso@gmail.com';
         $asunto = 'Mensaje de formulario';
 
         mail($para, utf8_decode($asunto), utf8_decode($info), $header);

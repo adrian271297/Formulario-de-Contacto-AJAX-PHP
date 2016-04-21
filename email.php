@@ -1,6 +1,6 @@
 ﻿<?php
 
-if (isset($_POST['enviar'])){
+
 
 $nombre = $_POST['nombre'];
 $empresa = $_POST ['empresa'];
@@ -40,6 +40,5 @@ $mensaje = $_POST['mensaje'];
         echo "Su mensaje fue enviado exitosamente. Gracias !";
     }
 
-}
 
 ?>
